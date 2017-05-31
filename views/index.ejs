@@ -1,0 +1,55 @@
+<% include layouts/header %>
+
+<div class="container">
+
+  <h1 class="text-primary">Add Customer</h1>
+
+  <form method="POST" action="/users/add">
+    <div class="form-group">
+      <label for="first_name">First name</label>
+      <input type="text" name="first_name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="last_name">Last name</label>
+      <input type="text" name="last_name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="form-control btn btn-info" value="Submit">
+    </div>
+
+  </form>
+  <% if(errors){ %>
+    <hr>
+    <div class="card card-block">
+      <h2 class="text-danger">Errors</h2>
+      <ul>
+        <% errors.forEach(function(error){ %>
+          <li> <%= error.msg %> </li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+  <hr>
+  <div class="card card-block">
+    <h1><%= title  %></h1>
+    <ul>
+      <% users.forEach(function(user){ %>
+        <li>
+        <%= user.first_name %> <%= user.last_name %>
+        <a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a> 
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
+
+
+
+<% include layouts/footer %>
